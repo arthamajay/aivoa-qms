@@ -620,7 +620,7 @@ export const initialRcaState = {
   intakeFilename: INCIDENT_SCENARIOS["ATOR-OOS-0842"].filename,
   rawInputText: INCIDENT_SCENARIOS["ATOR-OOS-0842"].rawText,
   groqModel: "openai/gpt-oss-120b",
-  groqApiKey: "",
+  groqApiKey: import.meta.env.VITE_GROQ_API_KEY || "",
   extractionStatus: "extracted", // idle | running | extracted | populated
   activePipelineNode: 5,
   extractedPreview: INCIDENT_SCENARIOS["ATOR-OOS-0842"].extractedData,
@@ -1969,7 +1969,7 @@ export default function App() {
                             onClick={async () => {
                               const first = inv.root_causes[0];
                               if (first) dispatch({ type: "UPDATE_ROOT_CAUSE", payload: { id: first.id, updates: { verification_status: "QP_CONFIRMED", confirmed_by_qp: state.qpName.split(",")[0], qp_review_notes: "Confirmed by QP." } } });
-                              try { await fetch(`${import.meta.env.VITE_API_URL}/api/v1/rca/investigations`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(inv) }); } catch {}
+                              try { await fetch(`${import.meta.env.Back_URL || "https://aivoa-qms-5n18.onrender.com"}/api/v1/rca/investigations`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(inv) }); } catch {}
                               dispatch({ type: "SAVE_INVESTIGATION" });
                               showToast(`${inv.deviation_number} saved to QMS.`);
                             }}
@@ -1980,7 +1980,7 @@ export default function App() {
                         <button
                           onClick={async () => {
                             if (confirmedCausesCount === 0) { showToast("Confirm at least one root cause first.", "error"); return; }
-                            try { await fetch(`${import.meta.env.VITE_API_URL}/api/v1/rca/investigations`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(inv) }); } catch {}
+                            try { await fetch(`${import.meta.env.Back_URL || "https://aivoa-qms-5n18.onrender.com"}/api/v1/rca/investigations`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(inv) }); } catch {}
                             dispatch({ type: "SAVE_INVESTIGATION" });
                             showToast(`${inv.deviation_number} signed off & saved to QMS.`);
                           }}

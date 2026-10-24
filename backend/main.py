@@ -51,7 +51,7 @@ app = FastAPI(
 
 CORS_ORIGINS = os.getenv(
     "CORS_ORIGINS",
-    "http://localhost:5173,http://localhost:3000"
+    "http://localhost:5173,http://localhost:3000,https://aivoa-qms-5n18.onrender.com"
 ).split(",")
 
 app.add_middleware(

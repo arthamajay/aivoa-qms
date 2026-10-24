@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Redux Toolkit Slice for AIVOA.AI Root Cause Analysis (RCA) Workflow
  * Manages:
  * - Active Deviation Intake & AI Extraction state
@@ -20,7 +20,7 @@ export const analyzeIncidentWithGroq = createAsyncThunk(
   "rca/analyzeIncidentWithGroq",
   async ({ rawText, sourceType, groqModel, groqApiKey }, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/rca/analyze-text`, {
+      const response = await fetch(`${import.meta.env.Back_URL || "https://aivoa-qms-5n18.onrender.com"}/api/v1/rca/analyze-text`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -46,7 +46,7 @@ export const saveInvestigationToDb = createAsyncThunk(
   "rca/saveInvestigationToDb",
   async (investigationData, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/rca/investigations`, {
+      const response = await fetch(`${import.meta.env.Back_URL || "https://aivoa-qms-5n18.onrender.com"}/api/v1/rca/investigations`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(investigationData),
