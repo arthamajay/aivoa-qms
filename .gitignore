@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+backend/*.db
+backend/verify_result.txt
+backend/pipeline_output.txt
+backend/test_*.py
+backend/verify_*.py
+backend/debug_*.py
+
+# Environment — NEVER commit real secrets
+backend/.env
+frontend/.env.local
+frontend/.env.production
+
+# Node
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# OS
+.DS_Store
+Thumbs.db

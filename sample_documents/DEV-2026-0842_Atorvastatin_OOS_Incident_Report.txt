@@ -1,0 +1,32 @@
+================================================================================
+PHARMACEUTICAL QUALITY MANAGEMENT SYSTEM — DEVIATION & OOS INVESTIGATION REPORT
+================================================================================
+Document Ref: DEV-2026-0842 / LIMS-OOS-2026-119
+Facility: AIVOA Biopharma API Division — Unit II, Chemical Synthesis Block B (Hyderabad)
+Date of Incident: 2026-10-18 14:20 IST
+Date Discovered / Reported: 2026-10-19 09:45 IST
+Reported By: Dr. Arvind Kulkarni (QC Analytical Lead) & Rajesh Menon (Production Shift Supervisor)
+API Product: Atorvastatin Calcium Trihydrate USP/EP (API)
+Batch Number: ATOR-2610-044 (Batch Size: 450.0 kg)
+Process Stage: Stage-IV Final Crystallization & Isolation
+Primary Equipment ID: Glass-Lined Reactor GLR-204 (5000L) & Agitated Nutsche Filter Dryer ANFD-102
+Criticality Classification: MAJOR (Potentially Critical — Batch Placed on Quarantine Hold)
+Impacted CQA / CPP:
+  - CQA: Related Substance Impurity-D (Desfluoro Atorvastatin) & Epoxide Impurity-B (Spec: <= 0.15% w/w; Observed: 0.38% w/w)
+  - CPP: Crystallization Jacket Cooling Ramp Rate (Target: 0.5°C/min from 62°C to 15°C) & Nitrogen Blanket Pressure (Target: 0.45 - 0.60 bar)
+
+1. INCIDENT SUMMARY & PROBLEM STATEMENT
+During QC release HPLC testing (Method ATM-HPLC-019) of Atorvastatin Calcium API Batch ATOR-2610-044 isolated from ANFD-102 on 19-Oct-2026, an Out-of-Specification (OOS) result was obtained for oxidative degradation Impurity-B (0.38% w/w vs specification NMT 0.15% w/w) and amorphous content elevation (~14% by XRPD vs NMT 5%). Phase-I Laboratory Investigation confirmed no analytical error, column degradation, or integration fault; re-injection of duplicate preparations confirmed 0.37% and 0.39% w/w.
+
+2. MANUFACTURING & SCADA / BMR EVIDENCE COLLECTED SO FAR
+- [EV-01] SCADA Historian Log (GLR-204-TEMP-09): During Stage-IV exothermic neutralization and crystallization seeding on 18-Oct-2026 between 14:15 and 15:40, reactor internal temperature held at 64.8°C for 78 minutes (BMR limit: 58.0 - 61.0°C for max 30 minutes), followed by an erratic crash-cooling spike (-2.4°C/min) when chilled brine bypass was manually opened.
+- [EV-02] Maintenance & Metrology Log (PM-2026-881): Proportional glycol/brine control valve PCV-204B on GLR-204 jacket exhibited actuator hysteresis and sticky stem behavior at 42% opening. Last elastomer diaphragm replacement was overdue by 45 days due to deferred shutdown.
+- [EV-03] Gas Utility Header Log (N2-HDR-B): Nitrogen blanket pressure on GLR-204 dropped to 0.08 bar for 52 minutes during reactant charging because manifold regulator PRV-112 was shared with adjacent reactor GLR-205 during pressure purge, allowing ambient oxygen/moisture ingress at elevated temperature (64.8°C).
+- [EV-04] Raw Material COA (Vendor Lot RM-2026-992): Recovered Methanol solvent ratio used in crystallization had moisture content 0.28% w/w (Spec: NMT 0.30% w/w — borderline high, up from historical mean 0.09% w/w).
+- [EV-05] Electronic Batch Manufacturing Record (eBMR-ATOR-044): Step 14.3 lacks an automated SCADA interlock preventing reactant charge when N2 blanket pressure < 0.35 bar; operator logged manual pressure gauge reading only at start of shift (12:00) and did not notice the transient drop at 14:20.
+
+3. IMMEDIATE CONTAINMENT ACTIONS TAKEN
+- Placed Batch ATOR-2610-044 (450 kg) under QA Quarantine Hold in Warehouse Zone Q-03.
+- Tagged Reactor GLR-204 "OUT OF SERVICE — ENGINEERING HOLD" pending valve PCV-204B teardown.
+- Initiated look-back review of previous 3 campaign batches (ATOR-2610-041, -042, -043).
+================================================================================
